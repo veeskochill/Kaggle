@@ -17,7 +17,7 @@ sur_ratio = num_sur/num_pass
 female_only = data[0::,4] == "female"
 male_only = data[0::,4] != "female"
 
-women_onboard = data[fem_only, 1].astype(np.float)
+women_onboard = data[female_only, 1].astype(np.float)
 men_onboard = data[male_only,1].astype(np.float)
 
 
@@ -38,7 +38,7 @@ pred_file = open('genderbasemodel.csv', 'wb')
 pred_obj = csv.writer(pred_file)
 
 
-pred_obj.wwriterow(["PassengerId", "Survived"])
+pred_obj.writerow(["PassengerId", "Survived"])
 for row in test_obj:
 	if row[3] == 'female':
 		pred_obj.writerow([row[0], '1'])
